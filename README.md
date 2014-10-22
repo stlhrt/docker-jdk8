@@ -1,4 +1,4 @@
-stlhrt:jdk8
+stlhrt/jdk8
 =========================
 
 Docker base container for using Oracle JDK8 on Ubuntu Trusty Tahr.
