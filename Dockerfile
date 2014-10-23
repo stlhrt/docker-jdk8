@@ -26,4 +26,8 @@ RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cach
 
 USER service
 WORKDIR /app/service
+
+VOLUME /app/logs
+VOLUME /app/data
+
 ENV HOME /home/service
