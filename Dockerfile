@@ -21,7 +21,7 @@ RUN mkdir -p /app/data
 
 RUN chown -R service:service /app
 
-# Cleanup test
+# Cleanup unnecessary files
 RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/oracle-jdk8-installer
 
 USER service
