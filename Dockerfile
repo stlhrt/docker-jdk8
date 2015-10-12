@@ -2,16 +2,11 @@ FROM ubuntu:14.04.1
 MAINTAINER Łukasz Woźniak
 
 RUN apt-get update
-RUN apt-get install python-software-properties software-properties-common -y
-RUN add-apt-repository ppa:webupd8team/java -y
-
-# Accept license
-RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get install python-software-properties software-properties-common curl libssl-dev man -y --no-install-recommends
 
 # Install Java
-RUN apt-get update
-RUN apt-get install oracle-java8-installer -y
-RUN apt-get install oracle-java8-set-default -y
+ADD install-java.sh /tmp/install-java.sh
+RUN /tmp/install-java.sh
 
 RUN useradd -m service
 
@@ -29,5 +24,6 @@ WORKDIR /app/service
 
 VOLUME /app/logs
 VOLUME /app/data
-
+ENV JAVA_HOME /usr/local/java
+ENV PATH $PATH:${JAVA_HOME}/bin
 ENV HOME /home/service
